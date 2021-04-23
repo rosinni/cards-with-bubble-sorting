@@ -12,18 +12,53 @@
     />
     <link rel="shortcut icon" href="./4geeks.ico" />
   </head>
-  <body>
+  <body class="bg-table">
     <div class="container-fluid text-center">
-      <h1 class="mt-5">Hello Rigo!</h1>
-      <img src="./rigo-baby.jpg" />
-      <p class="alert alert-warning mt-4">
-        If this text is <b>not</b> centered and <b>yellow</b>, you probably have
-        an error
-      </p>
-      <div class="fixed-bottom p-4">
-        Made with ❤️ by
-        <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
+      <!-- botones -->
+      <div class="container">
+        <div class="col-12 mt-5">
+          <input
+            type="number"
+            class="form-control"
+            id="card-number"
+            placeholder="Ingrese el numero de cartas que desea ordenar"
+          />
+        </div>
+        <div class="col-2">
+          <div class="row mt-3">
+            <div class="col-6">
+              <button class="btn bg-primary" id="aceptar">
+                Aceptar
+              </button>
+            </div>
+            <div class="col-6">
+              <button class="btn bg-success" id="ordenar">Ordenar</button>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- fin botones -->
+
+      <!-- cartas random -->
+      <div class="container mt-5">
+        <div class="row" id="container-card-draw">
+          <!-- CARTA -->
+        </div>
+      </div>
+      <!-- fin cartas random -->
+
+      <!-- cartas ordenadas -->
+      <div class="container mt-5">
+        <div class="row">
+          <!-- CARTA -->
+          <div class="card bg-light" style="width: 180px; height: 250px;">
+            <div class="pinta text-left">corazon</div>
+            <div class="numero text-center">1</div>
+            <div class="pinta text-right">corazon</div>
+          </div>
+        </div>
+      </div>
+      <!-- fin cartas ordenadas -->
     </div>
   </body>
 </html>
