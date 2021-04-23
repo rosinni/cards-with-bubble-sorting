@@ -11,7 +11,8 @@ window.onload = function() {
 };
 
 let palos = ["♦", "♥", "♠", "♣"];
-let sig = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
+let sig = ["1", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
+let arrCards = [];
 
 //funcion de dibujar cartas
 document.querySelector("#aceptar").addEventListener("click", function() {
@@ -34,12 +35,33 @@ document.querySelector("#aceptar").addEventListener("click", function() {
     maso[0] === "";
     document.querySelector(
       "#container-card-draw"
-    ).innerHTML += `<div class="card bg-light mx-1" style="width: 180px;  height: 250px;">
+    ).innerHTML += `<div class="card bg-light mx-1 random-cards" style="width: 180px;  height: 250px;">
             <div class="pinta text-left">${maso[0]}</div>
             <div class="numero text-center">${maso[1]}</div>
             <div class="pinta text-right">${maso[0]}</div>
           </div>`;
   }
+
+  //obtener el array de las cartas random
+  let cartas = document.querySelectorAll(".random-cards");
+  //   arrCards = [...cartas];
+  let aux;
+  for (let i = 0; i < cartas.length; i++) {
+    aux = cartas[i].textContent
+      .replace(/\s+/g, " ")
+      .trim()
+      .split(" ");
+    arrCards.push(aux);
+  }
+  //   console.log(arrCards);
+
+  //   console.log(
+  //     cartas[0].textContent
+  //       .replace(/\s+/g, " ")
+  //       .trim()
+  //       .split(" ")
+  //   );
+  //   console.log(arrCards[1].textContent.replace(/\s+/g, " "));
 });
 
 //funcionan generadora de cartas random
@@ -50,3 +72,40 @@ function ramdomCard() {
   let dataRandom = [paloRandom, sigRandom];
   return dataRandom;
 }
+
+//arr = [["♠", "A", "♠"],["♦", "J", "♦"]]
+//arr[0][1]
+//funcion que ordena
+const bubbleSort = arr => {
+  let wall = arr.length - 1; //we start the wall at the end of the array
+  while (wall > 0) {
+    let index = 0;
+    while (index < wall) {
+      //compare the adjacent positions, if the right one is bigger, we have to swap
+      if (arr[index][1] > arr[index + 1][1]) {
+        let aux = arr[index];
+        arr[index] = arr[index + 1];
+        arr[index + 1] = aux;
+      }
+      index++;
+    }
+    wall--; //decrease the wall for optimization
+  }
+  return arr;
+};
+
+//evento boton ordenar
+document.querySelector("#ordenar").addEventListener("click", function() {
+  let arr = bubbleSort(arrCards);
+  console.log(arr);
+
+  for (let i = 0; i < arr.length; i++) {
+    document.querySelector(
+      "#container-card-sort"
+    ).innerHTML += `<div class="card bg-light mx-1" style="width: 180px; height: 250px;">
+                            <div class="pinta text-left">${arr[i][0]}</div>
+                            <div class="numero text-center">${arr[i][1]}</div>
+                            <div class="pinta text-right">${arr[i][2]}</div>
+                          </div>`;
+  }
+});
